@@ -5,7 +5,7 @@ import Button from './Button'
 
 interface DrawerProps {
   onClose: () => void
-  children: unknown
+  children: React.ReactNode
 }
 
 const Drawer = ({ onClose, children }: DrawerProps) => {

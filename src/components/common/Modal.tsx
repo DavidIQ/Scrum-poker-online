@@ -7,7 +7,7 @@ interface ModalProps {
   title: string | React.ReactNode
   open: boolean
   onClose?: () => void
-  children: unknown
+  children: React.ReactNode
 }
 
 const Modal = ({ title, open, onClose, children }: ModalProps) => {

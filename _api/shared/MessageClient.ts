@@ -16,13 +16,13 @@ export default abstract class MessageClient {
   public static send(
     channel: string,
     message: { name: ClientEvent; data: unknown }
-  ): Promise<void> {
+  ): Promise<Pusher.Response> {
     return MessageClient.client.trigger(channel, message.name, message.data)
   }
 
   public static sendMultiple(
     messages: { channel: string; name: ClientEvent; data: unknown }[]
-  ): Promise<void> {
+  ): Promise<Pusher.Response> {
     return MessageClient.client.triggerBatch(messages)
   }
 

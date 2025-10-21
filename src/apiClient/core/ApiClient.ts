@@ -1,3 +1,5 @@
+import RequestInit from 'node-fetch'
+
 export default class ApiClient {
   private readonly auth?: string
 
@@ -58,9 +60,7 @@ export default class ApiClient {
       })
       .then(data => {
         if (data?.status === 'error')
-          return Promise.reject(
-            new Error(data.message) || new Error('Unexpected error')
-          )
+          return Promise.reject(new Error(data.message ?? 'Unexpected error'))
         else if (!receivedResponse.ok)
           return Promise.reject(new Error('Unexpected error'))
         else return data

@@ -9,12 +9,12 @@ import useUser from '../../shared/user/useUser'
 interface TypeNameModalProps {
   open: boolean
   onClose?: () => void
-  onSubmit?: (data: any) => void
+  onSubmit?: (data: unknown) => void
 }
 
 const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
   const { name, setName } = useUser()
-  const userInputRef = React.useRef<HTMLInputElement>()
+  const userInputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     if (open) {

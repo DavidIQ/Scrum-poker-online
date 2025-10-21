@@ -2,9 +2,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@styles/*": ["styles/*"],
-      "@src/*": ["src/*"],
-      "@api/*": ["_api/*"]
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ],
+      "@api/*": [
+        "_api/*"
+      ]
     },
     "target": "es5",
     "lib": [
@@ -22,7 +28,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",

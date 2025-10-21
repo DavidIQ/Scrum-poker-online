@@ -20,7 +20,7 @@ const HeaderContainer = ({ room }: HeaderContainerProps) => {
   const redirect = useRedirect()
   const [urlWasCopied, setUrlWasCopied] = React.useState<boolean>(false)
   const [openQRModal, setOpenQRModal] = React.useState<boolean>(false)
-  const timeoutRef = React.useRef<NodeJS.Timeout>()
+  const timeoutRef = React.useRef<NodeJS.Timeout>(null)
   const { execute: leaveRoom } = useLeaveRoom()
 
   const roomUrl = `${location.host}/rooms/${room.id}`

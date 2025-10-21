@@ -15,7 +15,7 @@ const NotificationsContext =
 
 export const useNotifications = () => React.useContext(NotificationsContext)
 
-const NotificationsProvider = ({ children }: { children: unknown }) => {
+const NotificationsProvider = ({ children }: { children: React.ReactNode }) => {
   const [notifications, setNotifications] = React.useState<Notification[]>([])
   const timeoutsRef = React.useRef([])
 

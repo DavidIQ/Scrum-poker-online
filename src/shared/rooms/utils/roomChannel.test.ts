@@ -4,6 +4,7 @@ import {
   isRoomChannel
 } from './roomChannel'
 import Id from '@api/shared/domain/Id'
+import { expect, describe, test } from '@jest/globals'
 
 describe('roomChannel', () => {
   test('isRoomChannel returns true when the channel identifier is a Room channel', () => {

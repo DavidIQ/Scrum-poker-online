@@ -10,7 +10,7 @@ const ThemeContext = React.createContext<ThemeContextValue>(undefined)
 
 export const useTheme = () => React.useContext(ThemeContext)
 
-const ThemeProvider = ({ children }: { children: unknown }) => {
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [stateTheme, setStateTheme] = React.useState<Theme>(
     () => (localStorage.getItem('theme') as Theme) || 'auto'
   )

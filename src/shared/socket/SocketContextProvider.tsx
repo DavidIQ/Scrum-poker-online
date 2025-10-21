@@ -20,7 +20,7 @@ export const useSocketContext = (): SocketAbstraction => {
   return data
 }
 
-const SocketContextProvider = ({ children }: { children: unknown }) => {
+const SocketContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, setState] = React.useState<SocketAbstractionState>('connecting')
 
   const socket = useNewSocket({

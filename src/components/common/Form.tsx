@@ -2,7 +2,7 @@ import React from 'react'
 
 interface FormProps {
   onSubmit: (data: unknown) => void
-  children: unknown
+  children: React.ReactNode
 }
 
 const Form = ({ onSubmit, children }: FormProps) => {
@@ -21,7 +21,7 @@ const Form = ({ onSubmit, children }: FormProps) => {
           formElement instanceof HTMLTextAreaElement)
       ) {
         const name = formElement.getAttribute('name')
-        data[name] = (formElement as any).value
+        data[name] = (formElement as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).value
       }
     }
 

@@ -5,8 +5,8 @@ interface ImageProps {
   src: string
   alt: string
   title?: string
-  width?: string | number
-  height?: string | number
+  width?: number  | `${number}`
+  height?: number | `${number}`
 }
 
 const Image = ({ src, alt, title, width, height }: ImageProps) => {
