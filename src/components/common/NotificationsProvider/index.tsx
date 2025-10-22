@@ -21,6 +21,7 @@ const NotificationsProvider = ({ children }: { children: React.ReactNode }) => {
 
   React.useEffect(() => {
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       for (const to of timeoutsRef.current) {
         clearTimeout(to)
       }
