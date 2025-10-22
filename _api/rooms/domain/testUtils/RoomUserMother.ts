@@ -7,6 +7,7 @@ export default abstract class RoomUserMother {
   public static random(user: Partial<RoomUser> = {}): RoomUser {
     return {
       id: RoomUserId.random(),
+      sid: 'session-id-123',
       name: new RoomUserName('John'),
       selectedCard: new RoomUserCard('2'),
       isMaster: true,

@@ -21,15 +21,17 @@ describe('JoinRoom', () => {
     const command: JoinRoomCommand = {
       roomId: room.id.getValue(),
       userId,
+      userSid: 'session-id-123',
       userName
     }
     await handler.dispatch(command)
 
     expect(repositoryMock.find).toHaveBeenCalledTimes(1)
-    expect(repositoryMock.find).toBeCalledWith(room.id)
+    expect(repositoryMock.find).toHaveBeenCalledWith(room.id)
 
     room.users.push({
       id: new RoomUserId(userId),
+      sid: command.userSid,
       name: new RoomUserName(userName),
       selectedCard: null,
       isMaster: false
@@ -48,6 +50,7 @@ describe('JoinRoom', () => {
     const command: JoinRoomCommand = {
       roomId: roomId.getValue(),
       userId,
+      userSid: 'session-id-123',
       userName
     }
 

@@ -13,6 +13,7 @@ export default abstract class RoomMongoModelMapper {
       _id: entity.id.getValue(),
       users: entity.users.map(user => ({
         _id: user.id.getValue(),
+        sid: user.sid,
         name: user.name.getValue(),
         isMaster: user.isMaster,
         selectedCard: user.selectedCard?.getValue() || null
@@ -28,6 +29,7 @@ export default abstract class RoomMongoModelMapper {
     for (const docUser of doc.users) {
       users.push({
         id: new RoomUserId(docUser._id),
+        sid: docUser.sid,
         name: new RoomUserName(docUser.name),
         isMaster: docUser.isMaster,
         selectedCard: docUser.selectedCard

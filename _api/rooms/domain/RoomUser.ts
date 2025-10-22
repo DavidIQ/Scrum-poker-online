@@ -4,6 +4,7 @@ import RoomUserId from './RoomUserId'
 
 export default interface RoomUser {
   readonly id: RoomUserId
+  sid: string
   name: RoomUserName
   isMaster: boolean
   selectedCard: RoomUserCard | null

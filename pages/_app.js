@@ -1,6 +1,5 @@
 import '@styles/globals.css'
 import Head from 'next/head'
-import React from 'react'
 import SocketContextProvider from '@src/shared/socket/SocketContextProvider'
 import UserContextProvider from '@src/shared/user/UserContextProvider'
 import NotificationsProvider from '@src/components/common/NotificationsProvider'

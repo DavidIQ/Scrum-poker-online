@@ -28,7 +28,8 @@ describe('MongoRoomRepository', () => {
         id: new RoomUserId('fpq43YGXgSX4dBosAAAF'),
         name: new RoomUserName('Added user'),
         isMaster: false,
-        selectedCard: new RoomUserCard('5')
+        selectedCard: new RoomUserCard('5'),
+        sid: 'session-id-1234'
       }
     ]
 

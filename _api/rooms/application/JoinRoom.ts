@@ -26,12 +26,26 @@ export default class JoinRoom {
     if (room.users.find(user => user.id.getValue() === userId.getValue()))
       return Promise.resolve()
 
-    room.users.push({
-      id: new RoomUserId(command.userId),
-      name: new RoomUserName(command.userName),
-      isMaster: room.users.filter(u => u.isMaster).length === 0,
-      selectedCard: null
-    })
+    const userBySid = room.users.find(user => user.sid === command.userSid)
+    const newUser = userBySid
+      ? {
+          ...userBySid,
+          id: userId
+        }
+      : {
+          id: userId,
+          sid: command.userSid,
+          name: new RoomUserName(command.userName),
+          isMaster: room.users.filter(u => u.isMaster).length === 0,
+          selectedCard: null
+        }
+
+    if (userBySid) {
+      const index = room.users.findIndex(user => user.sid === userBySid.sid)
+      room.users.splice(index, 1, newUser)
+    } else {
+      room.users.push(newUser)
+    }
 
     await this.repository.save(room)
 

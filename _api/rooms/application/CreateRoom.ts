@@ -24,6 +24,7 @@ export default class CreateRoom {
       users: [
         {
           id: userId,
+          sid: command.userSid,
           name: new RoomUserName(command.userName),
           isMaster: true,
           selectedCard: null

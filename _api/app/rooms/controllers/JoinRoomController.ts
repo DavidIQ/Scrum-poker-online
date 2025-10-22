@@ -30,10 +30,12 @@ export default class JoinRoomController extends Controller {
   ): Promise<void> {
     const userId = this.getAuthUserId(req)
     const { roomId, userName } = req.body
+    const userSid = this.getUserSid(req, res)
 
     await this.joinRoom.dispatch({
       roomId,
       userId,
+      userSid,
       userName
     })
 
