@@ -14,7 +14,7 @@ export default function Home() {
           href="https://github.com/Kelsier90/Scrum-poker-online"
           target="_blank"
           rel="noreferrer"
-          title="Github repository"
+          title="GitHub repository"
         >
           <GithubSvg className={styles.header__icon} />
         </a>
@@ -22,10 +22,10 @@ export default function Home() {
 
       <main className={styles.main}>
         <div>
-          <h1>Welcome to Scrum Poker Room</h1>
+          <h1>Welcome to Scrum Poker Online</h1>
 
           <p className={styles.description}>
-            You can start by creating a new room or joining to existing one
+            You can start by creating a new room or joining an existing one
           </p>
 
           <CreateRoomContainer />
