@@ -23,7 +23,7 @@ const HeaderContainer = ({ room }: HeaderContainerProps) => {
   const timeoutRef = React.useRef<NodeJS.Timeout>(null)
   const { execute: leaveRoom } = useLeaveRoom()
 
-  const roomUrl = `${location.host}/rooms/${room.id}`
+  const roomUrl = `${location.protocol}//${location.host}/rooms/${room.id}`
 
   React.useEffect(() => {
     return () => {
