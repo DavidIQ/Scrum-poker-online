@@ -65,7 +65,7 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
             })}
             title={room.issue || 'Not specified'}
           >
-            Voting:{' '}
+            Issue:{' '}
             <span
               className={clsx(styles.root__content__text__issue, {
                 [styles['root__content__text__issue--empty']]: !room.issue
@@ -74,18 +74,19 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
               {room.issue || 'Not specified'}
             </span>
           </h2>
-
-          {currentUser?.isMaster && (
-            <Button
-              color="primary"
-              size="md"
-              applyMargin={false}
-              onClick={() => setOpenEditIssueModal(true)}
-            >
-              Edit
-            </Button>
-          )}
         </div>
+        {currentUser?.isMaster && (
+        <div className={styles.root__content__button}>
+          <Button
+            color="primary"
+            size="md"
+            applyMargin={false}
+            onClick={() => setOpenEditIssueModal(true)}
+          >
+            Edit
+          </Button>
+        </div>
+        )}
       </div>
 
       {openEditIssueModal && (
@@ -100,7 +101,7 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
                 name="issue"
                 defaultValue={room.issue}
                 autoFocus
-                maxLength={100}
+                maxLength={200}
               />
               <Button type="submit">Save</Button>
             </Row>

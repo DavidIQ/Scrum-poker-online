@@ -27,6 +27,11 @@ const ResultStatistics = ({ room, onClose }: ResultStatisticsProps) => {
 
   const values = Object.values(stats)
   const maxValue = values.length > 0 ? Math.max(...values) : 0
+  const average = values.length > 0 ? Object.keys(stats).reduce((acc, card) => {
+    const count = !stats[card] ? 0 : (isNaN(parseInt(stats[card].toString())) ? 0 : parseInt(stats[card].toString()))
+    const value = !card ? 0 : (isNaN(parseInt(card)) ? 0 : parseInt(card))
+    return acc + (count * value)
+  }, 0) / values.length : 0
 
   return (
     <Drawer onClose={onClose}>
@@ -64,10 +69,13 @@ const ResultStatistics = ({ room, onClose }: ResultStatisticsProps) => {
               </div>
             </div>
           ))}
+          <hr className={styles.root__chart__line} />
+          <b><i>Average points: {average}</i></b>
+          <hr className={styles.root__chart__line} />
         </div>
         <div className={styles.root__participants}>
           {participantsCount} of {room.users.length} user
-          {room.users.length > 1 ? 's' : ''} have been participated
+          {room.users.length > 1 ? 's have' : ' has'} participated
         </div>
       </div>
     </Drawer>

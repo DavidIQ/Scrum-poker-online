@@ -27,7 +27,7 @@ export default abstract class MessageClient {
   }
 
   static auth(userId: string, channel: string) {
-    return MessageClient.client.authenticate(userId, channel, {
+    return MessageClient.client.authorizeChannel(userId, channel, {
       user_id: userId,
       user_info: { name: userId }
     })

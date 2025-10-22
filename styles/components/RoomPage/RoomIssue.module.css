@@ -14,10 +14,11 @@
   margin-bottom: 0.3rem;
 }
 
-.root__content {
+.root__content,
+.root__content__button {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .root__content__text {
@@ -33,9 +34,10 @@
 }
 
 .root__content__text__issue {
-  font-size: var(--text-sm);
+  text-decoration: underline;
 }
 
 .root__content__text__issue--empty {
+  font-size: var(--text-sm);
   color: var(--muted-color)
 }
