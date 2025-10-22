@@ -13,7 +13,7 @@ export default function Home() {
         <a
           href="https://github.com/Kelsier90/Scrum-poker-online"
           target="_blank"
-          rel="noreferrer"
+          rel="noreferrer noopener"
           title="GitHub repository"
         >
           <GithubSvg className={styles.header__icon} />
