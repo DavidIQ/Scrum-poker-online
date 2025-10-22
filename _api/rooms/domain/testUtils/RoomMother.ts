@@ -21,6 +21,7 @@ export default abstract class RoomMother {
       users: [
         {
           id: new RoomUserId(command.userId),
+          sid: command.userSid,
           name: new RoomUserName(command.userName),
           isMaster: true,
           selectedCard: null

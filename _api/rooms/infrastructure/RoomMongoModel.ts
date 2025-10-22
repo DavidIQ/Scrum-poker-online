@@ -5,6 +5,7 @@ export interface RoomMongoDoc extends mongoose.Document {
   _id: string
   users: {
     _id: string
+    sid: string
     name: string
     isMaster: boolean
     selectedCard: string | null
@@ -19,6 +20,7 @@ const roomSchema = new mongoose.Schema({
   users: [
     {
       _id: String,
+      sid: String,
       name: String,
       isMaster: Boolean,
       selectedCard: String,

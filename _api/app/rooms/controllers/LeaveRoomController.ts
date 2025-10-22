@@ -65,6 +65,8 @@ export default class LeaveRoomController extends Controller {
 
     await MessageClient.sendMultiple(messages)
 
+    this.removeUserSid(res)
+
     res.status(204).send(null)
   }
 }

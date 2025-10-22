@@ -21,10 +21,13 @@ export default class CreateRoomController extends Controller {
     const id = newId()
     const userId = this.getAuthUserId(req)
     const { userName } = req.body
+    this.removeUserSid(res)
+    const userSid = this.getUserSid(req, res)
 
     await this.createRoom.dispatch({
       id,
       userId,
+      userSid,
       userName
     })
 

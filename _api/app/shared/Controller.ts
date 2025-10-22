@@ -35,6 +35,21 @@ export default abstract class Controller {
     return req.headers.authorization
   }
 
+  protected getUserSid(req: NextApiRequest, res: NextApiResponse): string {
+    const sid = req.cookies?.sid
+    if (sid) return sid
+    const newSid = crypto.randomUUID()
+    res.setHeader(
+      'Set-Cookie',
+      `sid=${newSid}; Path=/; Max-Age=${60 * 60 * 24 * 7}` // 7 days
+    )
+    return newSid
+  }
+
+  protected removeUserSid(res: NextApiResponse): void {
+    res.setHeader('Set-Cookie', `sid=; Path=/; Max-Age=0`)
+  }
+
   protected abstract execute(
     req: NextApiRequest,
     res: NextApiResponse
@@ -43,7 +58,7 @@ export default abstract class Controller {
   protected runMiddleware(
     req: NextApiRequest,
     res: NextApiResponse,
-    fn: any
+    fn: (req: unknown, res: unknown, result: unknown) => void
   ): Promise<unknown> {
     return new Promise((resolve, reject) => {
       fn(req, res, result => {

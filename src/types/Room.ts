@@ -7,6 +7,7 @@ export default interface Room {
 
 export interface RoomUser {
   id: string
+  sid: string
   name: string
   isMaster: boolean
   selectedCard: string | null
