@@ -4,9 +4,9 @@ export default class RoomIssue {
   private readonly value: string
 
   constructor(value: string) {
-    if (value.trim().length > 100)
+    if (value.trim().length > 200)
       throw new InvalidDataError(
-        'The issue cannot contain more than 100 characters'
+        'The issue cannot contain more than 200 characters'
       )
     this.value = value.trim()
   }
