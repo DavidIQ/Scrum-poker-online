@@ -11,7 +11,7 @@ export default function Home() {
       <header className={styles.header}>
         <ThemeSelector />
         <a
-          href="https://github.com/Kelsier90/Scrum-poker-online"
+          href="https://github.com/DavidIQ/Scrum-poker-online"
           target="_blank"
           rel="noreferrer noopener"
           title="GitHub repository"
