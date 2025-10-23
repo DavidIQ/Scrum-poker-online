@@ -1,22 +1,8 @@
 import InvalidDataError from '@api/shared/domain/errors/InvalidDataError'
+import cardValues from '@src/types/cardValues'
 
 export default class RoomUserCard {
-  readonly values = [
-    '0',
-    '0.5',
-    '1',
-    '2',
-    '3',
-    '5',
-    '8',
-    '13',
-    '20',
-    '40',
-    '100',
-    'infinite',
-    '?',
-    'coffee'
-  ]
+  readonly values = cardValues()
 
   private readonly value: string
 
