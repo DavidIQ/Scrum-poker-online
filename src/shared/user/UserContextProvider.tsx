@@ -4,7 +4,7 @@ import { useSocketContext } from '../socket/SocketContextProvider'
 
 export const UserContext = React.createContext<User>(undefined)
 
-const UserContextProvider = ({ children }: { children: unknown }) => {
+const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   const socket = useSocketContext()
   const [name, setName] = React.useState<string | null>(() => {
     if (typeof localStorage !== 'undefined') {

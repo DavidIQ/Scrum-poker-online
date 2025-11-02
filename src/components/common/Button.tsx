@@ -8,11 +8,11 @@ interface ButtonProps {
   compact?: boolean
   color?: 'primary' | 'secondary' | 'success' | 'transparent'
   type?: 'button' | 'submit'
-  children: unknown
+  children: React.ReactNode
   onClick?: () => void
   className?: string
   applyMargin?: boolean
-  startIcon?: unknown
+  startIcon?: React.JSX.Element
   href?: string
   component?: string
 }

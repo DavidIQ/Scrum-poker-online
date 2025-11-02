@@ -3,7 +3,7 @@ import styles from '@styles/components/common/MenuItem.module.css'
 
 interface MenuItemProps {
   onClick?: () => void
-  children: unknown
+  children: React.ReactNode
 }
 
 const MenuItem = ({ onClick, children }: MenuItemProps) => {

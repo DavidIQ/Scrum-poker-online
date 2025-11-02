@@ -7,7 +7,7 @@ interface RowProps {
   alignItems?: string
   justifyContent?: string
   spacing?: 0 | 1 | 2
-  children: unknown
+  children: React.ReactNode
 }
 
 const Row = ({

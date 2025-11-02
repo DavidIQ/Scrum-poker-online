@@ -15,12 +15,13 @@ const NotificationsContext =
 
 export const useNotifications = () => React.useContext(NotificationsContext)
 
-const NotificationsProvider = ({ children }: { children: unknown }) => {
+const NotificationsProvider = ({ children }: { children: React.ReactNode }) => {
   const [notifications, setNotifications] = React.useState<Notification[]>([])
   const timeoutsRef = React.useRef([])
 
   React.useEffect(() => {
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       for (const to of timeoutsRef.current) {
         clearTimeout(to)
       }

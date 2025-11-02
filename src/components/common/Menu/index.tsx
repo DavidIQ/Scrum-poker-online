@@ -1,12 +1,12 @@
 import styles from '@styles/components/common/Menu.module.css'
 
-import React from 'react'
+import React, { JSXElementConstructor, ReactElement } from 'react'
 import CaretDownSvg from '@src/components/common/illustrations/CaretDownSvg'
 import clsx from 'clsx'
 
 interface MenuProps {
-  title: unknown
-  children: unknown
+  title: ReactElement<unknown, string | JSXElementConstructor<unknown>>
+  children: React.ReactNode
 }
 
 const Menu = ({ title, children }: MenuProps) => {

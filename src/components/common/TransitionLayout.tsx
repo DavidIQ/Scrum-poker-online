@@ -3,7 +3,7 @@ import styles from '@styles/components/common/TransitionLayout.module.css'
 import React from 'react'
 import clsx from 'clsx'
 
-const TransitionLayout = ({ children }: { children: unknown }) => {
+const TransitionLayout = ({ children }: { children: React.ReactNode }) => {
   const [displayChildren, setDisplayChildren] = React.useState(children)
   const [display, setDisplay] = React.useState(false)
 
