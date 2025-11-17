@@ -129,6 +129,15 @@
   flex-grow: 1;
 }
 
+.button--disabled {
+  cursor: not-allowed;
+}
+
+.button--disabled:focus::before,
+.button--disabled:hover .button__content {
+  animation: none !important;
+}
+
 @media (max-width: 600px) {
   .button--hide-text-sm .button__content__text {
     display: none;

@@ -58,6 +58,7 @@ const BoardControlsContainer = ({ room }: BoardControlsProps) => {
   }
 
   const currentUser = useCurrentUserFromRoom(room)
+  const pickCardTitle = currentUser?.isMaster ? 'Set issue to enable voting' : 'Nothing yet to vote for'
 
   return (
     <div className={styles.root}>
@@ -94,12 +95,14 @@ const BoardControlsContainer = ({ room }: BoardControlsProps) => {
         </Button>
       )}
 
-      {!room.reveal && !!room.issue && (
+      {!room.reveal && (
         <Button
           color="primary"
           className={styles.root__action}
           onClick={handleSelectCard}
           startIcon={<CardsSvg />}
+          disabled={!room.issue}
+          title={!room.issue ? pickCardTitle : undefined}
         >
           Pick card
         </Button>

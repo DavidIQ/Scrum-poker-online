@@ -15,6 +15,8 @@ interface ButtonProps {
   startIcon?: React.JSX.Element
   href?: string
   component?: string
+  disabled?: boolean
+  title?: string
 }
 
 const Button = ({
@@ -27,6 +29,7 @@ const Button = ({
   applyMargin = true,
   startIcon,
   component = 'button',
+  disabled = false,
   ...rest
 }: ButtonProps) =>
   React.createElement(
@@ -40,8 +43,10 @@ const Button = ({
         { [styles['button--compact-true']]: compact },
         { [styles['button--margin-false']]: !applyMargin },
         { [styles['button--hide-text-sm']]: !!startIcon },
+        { [styles['button--disabled']]: disabled },
         className
       ),
+      disabled,
       ...rest
     },
     <div className={styles.button__content}>
