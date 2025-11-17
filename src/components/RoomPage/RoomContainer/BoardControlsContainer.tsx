@@ -61,7 +61,7 @@ const BoardControlsContainer = ({ room }: BoardControlsProps) => {
 
   return (
     <div className={styles.root}>
-      {!room.reveal && currentUser?.isMaster && (
+      {!room.reveal && currentUser?.isMaster && !!room.issue && (
         <Button
           color="secondary"
           className={styles.root__action}
@@ -94,7 +94,7 @@ const BoardControlsContainer = ({ room }: BoardControlsProps) => {
         </Button>
       )}
 
-      {!room.reveal && (
+      {!room.reveal && !!room.issue && (
         <Button
           color="primary"
           className={styles.root__action}
