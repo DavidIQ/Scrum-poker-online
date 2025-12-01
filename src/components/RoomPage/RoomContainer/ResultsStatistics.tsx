@@ -27,15 +27,15 @@ const ResultStatistics = ({ room, onClose }: ResultStatisticsProps) => {
 
   const values = Object.values(stats)
   const maxValue = values.length > 0 ? Math.max(...values) : 0
-  
+
   const intKeys = values.length > 0 ? Object.keys(stats).filter(k => !isNaN(parseInt(k.toString()))) : [];
   let totalCount = 0;
-  const average = intKeys.length > 0 ? intKeys.reduce((acc, card) => {
+  const average = (intKeys.length > 0 ? intKeys.reduce((acc, card) => {
     const count = parseInt(stats[card].toString())
     const value = parseInt(card)
     totalCount += count;
     return acc + (count * value)
-  }, 0) / totalCount : 0
+  }, 0) / totalCount : 0).toFixed(1);
 
   return (
     <Drawer onClose={onClose}>
