@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 import composeMongoModel from '@api/shared/infrastructure/composeMongoModel'
 
 export interface RoomMongoDoc extends mongoose.Document {
-  _id: string
   users: {
     _id: string
     sid: string

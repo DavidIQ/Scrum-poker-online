@@ -39,7 +39,7 @@ export default abstract class RoomMongoModelMapper {
     }
 
     return {
-      id: new Id(doc._id),
+      id: new Id(doc._id.toString()),
       users,
       reveal: doc.reveal,
       issue: doc.issue ? new RoomIssue(doc.issue) : undefined

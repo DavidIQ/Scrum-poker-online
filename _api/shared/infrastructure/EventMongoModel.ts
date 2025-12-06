@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 import composeMongoModel from '@api/shared/infrastructure/composeMongoModel'
 
 export interface EventMongoDoc extends mongoose.Document {
-  _id: string
   name: string
   aggregateId: string
   data: Record<string, unknown>
