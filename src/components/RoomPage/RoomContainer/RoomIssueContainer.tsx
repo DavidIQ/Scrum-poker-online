@@ -55,6 +55,23 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
     )
   }
 
+  const getIssueId = () => {
+    if (room.issue && room.issueTrackerUrl) {
+      if (room.issue.startsWith('#') && room.issue.substring(1).match(/\d+/)) {
+        const issueId = parseInt(room.issue.substring(1).match(/\d+/)[0]);
+        return isNaN(issueId) ? 0 : issueId;
+      }
+      if (room.issue.split(' ')[0].match(/^\d+$/)) {
+        const issueId = parseInt(room.issue.split(' ')[0]);
+        return isNaN(issueId) ? 0 : issueId;
+      }
+    }
+    return 0;
+  }
+
+  const issueId = getIssueId();
+  const issue = issueId > 0 ? room.issue.replace(`#${issueId}`, '').replace(issueId.toString(), '').trim() : room.issue;
+
   return (
     <>
       <div className={styles.root}>
@@ -65,13 +82,17 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
             })}
             title={room.issue || 'Not specified'}
           >
-            Issue:{' '}
+            {issueId > 0 && (
+              <span>
+                <a href={`${room.issueTrackerUrl}${issueId}`} target="_blank" rel="noopener noreferrer" className={styles.root__content__link__issue} title="View Issue">#{issueId}</a>{'\u00A0'}
+              </span>
+            )}
             <span
               className={clsx(styles.root__content__text__issue, {
                 [styles['root__content__text__issue--empty']]: !room.issue
               })}
             >
-              {room.issue || 'Not specified'}
+              {issue || 'Not specified'}
             </span>
           </h2>
         </div>

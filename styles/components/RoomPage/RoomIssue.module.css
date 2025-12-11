@@ -34,10 +34,24 @@
 }
 
 .root__content__text__issue {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .root__content__text__issue--empty {
   font-size: var(--text-sm);
-  color: var(--muted-color)
+  color: var(--muted-color);
+  font-style: italic;
+}
+
+.root__content__link__issue {
+  text-decoration: underline;
+  background-color: var(--primary-color);
+  display: inline-block;
+  transition: transform 0.2s ease;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+}
+
+.root__content__link__issue:hover {
+  transform: scale(1.04);
 }
