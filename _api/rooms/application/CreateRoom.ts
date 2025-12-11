@@ -21,6 +21,7 @@ export default class CreateRoom {
 
     await this.repository.save({
       id,
+      issueTrackerUrl: command.issueTrackerUrl,
       users: [
         {
           id: userId,

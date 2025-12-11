@@ -15,6 +15,7 @@ interface TypeNameModalProps {
 const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
   const { name, setName } = useUser()
   const userInputRef = React.useRef<HTMLInputElement>(null);
+  const issueTrackerUrlRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     if (open) {
@@ -22,13 +23,13 @@ const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
     }
   }, [open])
 
-  const handleSubmit = (data: { user: string }) => {
+  const handleSubmit = (data: { user: string; issueTrackerUrl?: string }) => {
     setName(data.user)
     if (onSubmit) onSubmit(data)
   }
 
   return (
-    <Modal title="Type your name" open={open} onClose={onClose}>
+    <Modal title="Creating room" open={open} onClose={onClose}>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Input
@@ -38,6 +39,16 @@ const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
             defaultValue={name || ''}
             required
           />
+        </Row>
+        <Row>
+          <Input
+            ref={issueTrackerUrlRef}
+            name="issueTrackerUrl"
+            placeholder="Issue tracker URL (optional)"
+            defaultValue={ ''}
+          />
+        </Row>
+        <Row justifyContent="flex-end">
           <Button type="submit">Continue</Button>
         </Row>
       </Form>
