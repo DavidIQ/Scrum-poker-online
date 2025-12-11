@@ -19,6 +19,7 @@ export default abstract class RoomMongoModelMapper {
         selectedCard: user.selectedCard?.getValue() || null
       })),
       reveal: entity.reveal,
+      issueTrackerUrl: entity.issueTrackerUrl,
       issue: entity.issue?.getValue()
     })
   }
@@ -42,6 +43,7 @@ export default abstract class RoomMongoModelMapper {
       id: new Id(doc._id.toString()),
       users,
       reveal: doc.reveal,
+      issueTrackerUrl: doc.issueTrackerUrl,
       issue: doc.issue ? new RoomIssue(doc.issue) : undefined
     }
   }

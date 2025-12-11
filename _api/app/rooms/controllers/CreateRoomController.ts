@@ -20,7 +20,7 @@ export default class CreateRoomController extends Controller {
   ): Promise<void> {
     const id = newId()
     const userId = this.getAuthUserId(req)
-    const { userName } = req.body
+    const { userName, issueTrackerUrl } = req.body
     this.removeUserSid(res)
     const userSid = this.getUserSid(req, res)
 
@@ -28,7 +28,8 @@ export default class CreateRoomController extends Controller {
       id,
       userId,
       userSid,
-      userName
+      userName,
+      issueTrackerUrl
     })
 
     const response = await this.getRoom.dispatch({

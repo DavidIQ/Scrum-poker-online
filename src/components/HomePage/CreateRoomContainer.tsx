@@ -18,9 +18,9 @@ const CreateRoomContainer = () => {
 
   const { addNotification } = useNotifications()
 
-  const handleSubmit = ({ user }: { user: string }) => {
+  const handleSubmit = (data: { user: string; issueTrackerUrl?: string }) => {
     createRoom(
-      { userName: user },
+      { userName: data.user, issueTrackerUrl: data.issueTrackerUrl },
       {
         onSuccess: room => {
           setOpenModal(false)

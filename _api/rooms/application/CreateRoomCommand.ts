@@ -3,4 +3,5 @@ export default interface CreateRoomCommand {
   readonly userSid: string
   readonly userId: string
   readonly userName: string
+  readonly issueTrackerUrl?: string
 }

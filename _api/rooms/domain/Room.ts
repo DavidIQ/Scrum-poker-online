@@ -6,5 +6,6 @@ export default interface Room {
   readonly id: Id
   users: RoomUser[]
   reveal: boolean
+  issueTrackerUrl?: string
   issue?: RoomIssue
 }

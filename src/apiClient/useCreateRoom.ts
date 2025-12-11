@@ -5,6 +5,7 @@ import useApiClient from '@src/apiClient/core/useApiClient'
 
 interface CreateRoomInput {
   userName: string
+  issueTrackerUrl?: string
 }
 
 export default function useCreateRoom(): OperationStatus<
