@@ -27,6 +27,8 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
 
   const { addNotification } = useNotifications()
 
+  const prevIssueRef = React.useRef<string | undefined>(room.issue);
+
   React.useEffect(() => {
     let timeout
 
@@ -35,7 +37,11 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
       timeout = setTimeout(() => {
         setRunAnimation(true)
       }, 10)
+    } else if (prevIssueRef.current !== room.issue) {
+      setOpenEditIssueModal(true)
     }
+
+    prevIssueRef.current = room.issue;
 
     return () => {
       if (timeout) clearTimeout(timeout)

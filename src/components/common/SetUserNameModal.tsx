@@ -15,7 +15,6 @@ interface TypeNameModalProps {
 const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
   const { name, setName } = useUser()
   const userInputRef = React.useRef<HTMLInputElement>(null);
-  const issueTrackerUrlRef = React.useRef<HTMLInputElement>(null);
   const storedIssueTrackerUrl = typeof localStorage !== 'undefined' ? localStorage.getItem('issueTrackerUrl') : ''
 
   React.useEffect(() => {
@@ -46,7 +45,6 @@ const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
         </Row>
         <Row>
           <Input
-            ref={issueTrackerUrlRef}
             name="issueTrackerUrl"
             placeholder="Issue tracker URL (optional)"
             defaultValue={ storedIssueTrackerUrl || '' }
