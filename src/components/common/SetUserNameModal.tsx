@@ -16,6 +16,7 @@ const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
   const { name, setName } = useUser()
   const userInputRef = React.useRef<HTMLInputElement>(null);
   const issueTrackerUrlRef = React.useRef<HTMLInputElement>(null);
+  const storedIssueTrackerUrl = typeof localStorage !== 'undefined' ? localStorage.getItem('issueTrackerUrl') : ''
 
   React.useEffect(() => {
     if (open) {
@@ -25,6 +26,9 @@ const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
 
   const handleSubmit = (data: { user: string; issueTrackerUrl?: string }) => {
     setName(data.user)
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('issueTrackerUrl', data.issueTrackerUrl || '')
+    }
     if (onSubmit) onSubmit(data)
   }
 
@@ -45,7 +49,7 @@ const SetUserNameModal = ({ open, onClose, onSubmit }: TypeNameModalProps) => {
             ref={issueTrackerUrlRef}
             name="issueTrackerUrl"
             placeholder="Issue tracker URL (optional)"
-            defaultValue={ ''}
+            defaultValue={ storedIssueTrackerUrl || '' }
           />
         </Row>
         <Row justifyContent="flex-end">
