@@ -10,6 +10,7 @@ export interface GetRoomResponseSerialized {
     hasSelectedCard: boolean
   }[]
   reveal: boolean
+  issueTrackerUrl?: string
   issue?: string
 }
 
@@ -34,6 +35,7 @@ export default class GetRoomResponse {
         hasSelectedCard: user.selectedCard !== null
       })),
       reveal: this.room.reveal,
+      issueTrackerUrl: this.room.issueTrackerUrl,
       issue: this.room.issue?.getValue()
     }
   }

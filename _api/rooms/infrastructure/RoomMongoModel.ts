@@ -11,6 +11,7 @@ export interface RoomMongoDoc extends mongoose.Document {
     hasSelectedCard: boolean
   }[]
   reveal: boolean
+  issueTrackerUrl?: string
   issue: string
 }
 
@@ -27,6 +28,7 @@ const roomSchema = new mongoose.Schema({
     }
   ],
   reveal: Boolean,
+  issueTrackerUrl: String,
   issue: String
 })
 
