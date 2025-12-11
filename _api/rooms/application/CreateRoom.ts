@@ -19,21 +19,26 @@ export default class CreateRoom {
     const id = new Id(command.id)
     const userId = new RoomUserId(command.userId)
 
-    await this.repository.save({
-      id,
-      issueTrackerUrl: command.issueTrackerUrl,
-      users: [
-        {
-          id: userId,
-          sid: command.userSid,
-          name: new RoomUserName(command.userName),
-          isMaster: true,
-          selectedCard: null
-        }
-      ],
-      reveal: false
-    })
+    try {
+      await this.repository.save({
+        id,
+        issueTrackerUrl: command.issueTrackerUrl,
+        users: [
+          {
+            id: userId,
+            sid: command.userSid,
+            name: new RoomUserName(command.userName),
+            isMaster: true,
+            selectedCard: null
+          }
+        ],
+        reveal: false
+      })
 
-    await this.eventBus.publish([RoomCreatedEvent.createNew(id, { userId })])
+      await this.eventBus.publish([RoomCreatedEvent.createNew(id, { userId })])
+    } catch (error) {
+      console.error('Error creating room:', error)
+      throw error
+    }
   }
 }
