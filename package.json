@@ -15,7 +15,7 @@
     "cors": "2.8.5",
     "express": "5.1.0",
     "mongoose": "9.0.1",
-    "next": "15.5.7",
+    "next": "16.0.10",
     "pusher": "5.2.0",
     "pusher-js": "8.4.0",
     "raw-body": "3.0.2",
