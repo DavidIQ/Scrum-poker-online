@@ -37,7 +37,7 @@ const RoomIssueContainer = ({ room }: RoomIssueContainerProps) => {
       timeout = setTimeout(() => {
         setRunAnimation(true)
       }, 10)
-    } else if (prevIssueRef.current !== room.issue) {
+    } else if (prevIssueRef.current !== room.issue && currentUser?.isMaster) {
       setOpenEditIssueModal(true)
     }
 
