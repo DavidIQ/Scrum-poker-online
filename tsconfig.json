@@ -1,23 +1,14 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
-      "@styles/*": [
-        "styles/*"
-      ],
-      "@src/*": [
-        "src/*"
-      ],
-      "@api/*": [
-        "_api/*"
-      ]
+      "@styles/*": ["styles/*"],
+      "@src/*": ["src/*"],
+      "@api/*": ["_api/*"]
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -31,12 +22,12 @@
     "jsx": "react-jsx",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/testUtils/**",
+    "_api/tests/**"
   ]
 }
