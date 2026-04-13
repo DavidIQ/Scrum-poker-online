@@ -19,7 +19,7 @@
     "pusher": "5.3.3",
     "pusher-js": "8.5.0",
     "raw-body": "3.0.2",
-    "react": "19.2.4",
+    "react": "19.2.5",
     "react-dom": "19.2.5",
     "react-qr-code": "2.0.18",
     "uuid": "13.0.0"
