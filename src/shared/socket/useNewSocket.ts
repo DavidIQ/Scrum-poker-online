@@ -1,3 +1,4 @@
+import React from 'react'
 import ClientEvent from '../types/ClientEvent'
 import ApiResponse from '../../apiClient/types/ApiResponse'
 import Pusher, { Channel } from 'pusher-js'
@@ -20,7 +21,7 @@ export class SocketAbstraction {
 
   constructor(pusher: Pusher, opts?: SocketAbstractionOptions) {
     this.socket = pusher
-    if (opts?.onConnectionChange) {
+    if (opts?.onConnectionChange && this.socket.connection) {
       this.socket.connection
         .bind('connecting', () => opts.onConnectionChange('connecting'))
         .bind('connected', () => opts.onConnectionChange('connected'))
@@ -31,7 +32,7 @@ export class SocketAbstraction {
   }
 
   getId(): string {
-    return this.socket.connection.socket_id
+    return this.socket.connection?.socket_id || ''
   }
 
   on<T = unknown>(
@@ -54,11 +55,14 @@ export class SocketAbstraction {
   }
 }
 
-const pusher = new Pusher(PUSHER_KEY, {
-  cluster: PUSHER_CLUSTER,
-  authEndpoint: '/api/auth-channel'
-})
+const pusher =
+  typeof window !== 'undefined'
+    ? new Pusher(PUSHER_KEY, {
+        cluster: PUSHER_CLUSTER,
+        authEndpoint: '/api/auth-channel'
+      })
+    : ({} as Pusher)
 
 export default function useNewSocket(opts?: SocketAbstractionOptions) {
-  return new SocketAbstraction(pusher, opts)
+  return React.useMemo(() => new SocketAbstraction(pusher, opts), [opts])
 }
