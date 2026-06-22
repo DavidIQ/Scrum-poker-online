@@ -21,7 +21,7 @@
     "raw-body": "3.0.2",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "react-qr-code": "2.0.21",
+    "react-qr-code": "2.2.0",
     "uuid": "14.0.0"
   },
   "devDependencies": {
