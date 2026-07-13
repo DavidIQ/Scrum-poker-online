@@ -14,7 +14,7 @@
     "content-type": "2.0.0",
     "cors": "2.8.6",
     "express": "5.2.1",
-    "mongoose": "9.7.3",
+    "mongoose": "9.7.4",
     "next": "16.2.10",
     "pusher": "5.3.4",
     "pusher-js": "8.5.0",
