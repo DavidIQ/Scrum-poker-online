@@ -24,7 +24,7 @@ describe('LeaveRoom', () => {
     await handler.dispatch(command)
 
     expect(repositoryMock.find).toHaveBeenCalledTimes(1)
-    expect(repositoryMock.find).toBeCalledWith(room.id)
+    expect(repositoryMock.find).toHaveBeenCalledWith(room.id)
 
     // Must be at least 1 master in the room
     user2.isMaster = true

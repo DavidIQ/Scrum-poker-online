@@ -1,36 +1,34 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
+import nextTypeScript from 'eslint-config-next/typescript'
 import prettier from 'eslint-config-prettier/flat'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+// eslint-config-next ships native flat configs, so they are spread directly.
+// Routing them through FlatCompat fed a flat config to the legacy eslintrc
+// validator, which crashed on the plugins' circular references.
 const eslintConfig = [
-  ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript'],
-    rules: {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "warn"
-    },
-    globals: {
-      "NodeJS": true,
-    },
-  }),
+  ...nextCoreWebVitals,
+  ...nextTypeScript,
   prettier,
   {
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-    ],
+    languageOptions: {
+      globals: {
+        NodeJS: true
+      }
+    },
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn'
+    }
   },
+  {
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts'
+    ]
+  }
 ]
 
 export default eslintConfig
