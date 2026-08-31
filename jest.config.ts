@@ -3,9 +3,15 @@
  * https://jestjs.io/docs/configuration
  */
 
-import { pathsToModuleNameMapper } from 'ts-jest'
+import tsconfig from './tsconfig.json' with { type: 'json' }
 
-import { compilerOptions } from './tsconfig.json'
+// Mirror the tsconfig `paths` aliases so tests resolve them the same way the build does.
+const moduleNameMapper = Object.fromEntries(
+  Object.entries(tsconfig.compilerOptions.paths).map(([alias, [target]]) => [
+    `^${alias.replace('/*', '')}/(.*)$`,
+    `<rootDir>/${target.replace(/^\.\//, '').replace('/*', '')}/$1`
+  ])
+)
 
 export default {
   // All imported modules in your testUtils should be mocked automatically
@@ -78,9 +84,7 @@ export default {
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<rootDir>/'
-  }),
+  moduleNameMapper,
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -91,8 +95,19 @@ export default {
   // An enum that specifies notification mode. Requires { notify: true }
   // notifyMode: "failure-change",
 
-  // A preset that is used as a base for Jest's configuration
-  preset: 'ts-jest',
+  // Transform TS via Babel. Configured inline rather than in a root babel.config.js,
+  // which Next.js would detect and use instead of SWC/Turbopack.
+  transform: {
+    '^.+\\.[jt]sx?$': [
+      'babel-jest',
+      {
+        presets: [
+          ['@babel/preset-env', { targets: { node: 'current' } }],
+          '@babel/preset-typescript'
+        ]
+      }
+    ]
+  },
 
   // Run testUtils from one or more projects
   // projects: undefined,
@@ -124,7 +139,7 @@ export default {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  setupFiles: ['<rootDir>/api/tests/setup/envInit.ts']
+  setupFiles: ['<rootDir>/_api/tests/setup/envInit.ts'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
@@ -174,10 +189,11 @@ export default {
   // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/",
-  //   "\\.pnp\\.[^\\/]+$"
-  // ],
+  // uuid ships ESM only, so it must be transformed to CJS rather than skipped.
+  transformIgnorePatterns: [
+    'node_modules[\\\\/](?!uuid[\\\\/])',
+    '\\.pnp\\.[^\\\\/]+$'
+  ]
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
